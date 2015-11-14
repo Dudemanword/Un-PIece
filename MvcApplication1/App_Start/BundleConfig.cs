@@ -18,10 +18,10 @@ namespace MvcApplication1
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/treviso").Include(
-                        "~/Scripts/home/jquery.jcarousel.js",
-                        "~/Scripts/home/jquery.mixitup.js",
-                        "~/Scripts/home/custom.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/treviso").Include(
+            //            "~/Scripts/home/jquery.jcarousel.js",
+            //            "~/Scripts/home/jquery.mixitup.js",
+            //            "~/Scripts/home/custom.js"));
                         
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

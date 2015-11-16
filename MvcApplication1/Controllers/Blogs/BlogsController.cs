@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using MvcApplication1.Controllers.Blogs;
+using OnePieceAbridged.Controllers.Blogs;
 
-namespace MvcApplication1.Controllers.Videos
+namespace OnePieceAbridged.Controllers.Videos
 {
     public class BlogsController : ApiController
     {

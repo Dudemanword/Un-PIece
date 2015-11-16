@@ -84,22 +84,6 @@ $(document).ready(function() {
 		}, 2000);
 	});
 
-	// Start Carousel
-	$('#latestVidoes').jcarousel();
-	$('#latestPosts').jcarousel();
-
-	////// Carousel Hover
-	//$('div.section.block').hover(
-	//	function () {
-	//		$(this).children('div.hover').fadeIn('fast');
-	//		$(this).children('div.content').fadeOut('fast');
-	//	},
-	//	function () {
-	//	    $(this).children('div.hover').fadeOut('fast');
-	//	    $(this).children('div.content').fadeIn('fast');
-	//	}
-	//);
-
 	// Services Icon Hover
 	var original_text = $('p#services').text();
 	var services_p = $('p#services');

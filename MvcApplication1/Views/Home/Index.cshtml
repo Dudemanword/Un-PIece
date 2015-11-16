@@ -9,38 +9,57 @@
     </div>
 
     <div class="content" ng-controller="VideosController">
-        <!-- Homepage -->
-        <div class="section full" id="latestVidoes">
+        <div class="section full">
             <h2 style="font-family: 'Oswald', sans-serif;">Latest Videos</h2>
-            <div style="height: 305px">
+            <div style="height: 360px; width: 480px">
                 <uib-carousel interval="Interval" no-wrap="noWrapSlides">
                     <uib-slide ng-repeat="video in latestVideos" active="video.active">
-                        <img ng-src="~/Content/images/home/placeholder_large1.jpg" style="margin:auto;">
+                        <img ng-src="{{video.ThumbnailUrl}}" ng-click="open(video)" style="margin:auto;">
                         <div class="carousel-caption">
                             <h4>{{video.Name}}</h4>
-                            <p>{{video.Description}}</p>
+                            <h5>{{video.Description}}</h5>
                         </div>
+
+                        <script type="text/ng-template" id="myModalContent.html">
+                            
+                            <div class="modal-header embed-responsive embed-responsive-16by9">
+                                <button class="close" type="button" ng-click="cancel()">&times;</button>
+
+                            </div>
+                            <div class="modal-body ">
+                                <iframe id="ytplayer" type="text/html" width="640" height="390"
+                                        ng-src="{{video.VideoUrl | trustAsResourceUrl}}"
+                                        frameborder="0" />
+                            </div>
+                            
+                        </script>
+
                     </uib-slide>
                 </uib-carousel>
             </div>
         </div>
 
         <div class="clear"></div>
-        <div class="section full" id="latestVidoes">
+        <div class="section full">
             <h2 style="font-family: 'Oswald', sans-serif">Latest Posts</h2>
-            <div style="height: 305px">
+            <div style="height: 360px; width: 480px">
                 <uib-carousel interval="Interval" no-wrap="noWrapSlides">
                     <uib-slide ng-repeat="blog in blogs" active="blog.active">
-                        <img ng-src="~/Content/images/home/placeholder_large1.jpg" style="margin:auto;">
+                        <img ng-src="~/Content/images/home/One-Piece-logosmall.jpg" style="margin:auto;">
                         <div class="carousel-caption">
                             <h4>{{blog.Name}}</h4>
-                            <p>{{blog.Description}}</p>
+                            <h5>{{blog.Description}}</h5>
                         </div>
                     </uib-slide>
                 </uib-carousel>
             </div>
             <div class="clear"></div>
+
+            
+            
         </div>
+    </div>
 </body>
 
-<script src="~/Scripts/home/VideoController.js"></script>
+<script src="~/Scripts/home/ModalController.js"></script>
+<script src="~/Scripts/home/VideosController.js"></script>

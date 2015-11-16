@@ -6,11 +6,15 @@ using System.Web.Mvc;
 
 namespace OnePieceAbridged.Controllers
 {
-    public class HomeController : Controller
+    public class VideosController : Controller
     {
-        public ActionResult Index()
+        //
+        // GET: /Videos/
+
+        public ActionResult Videos()
         {
             return View();
         }
+
     }
 }

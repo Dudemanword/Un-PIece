@@ -34,7 +34,7 @@
         <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
 
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active">@Html.ActionLink("Home", "Index", "Home")</a></li>
                 <li>@Html.ActionLink("Videos", "Videos", "Videos")</li>
                 <li><a href="#">Blogs</a></li>
             </ul>

@@ -9,6 +9,9 @@ using System.IO;
 using System.Threading;
 using Google.Apis.Util.Store;
 using Google.Apis.Services;
+using System.Web.Hosting;
+using OnePieceAbridged.App_Start;
+using Quartz;
 
 namespace OnePieceAbridged.Controllers.Videos
 {
@@ -16,27 +19,42 @@ namespace OnePieceAbridged.Controllers.Videos
     {
         public async Task<YouTubeService> GenerateYoutubeRequest()
         {
+
             var fileName = HttpContext.Current.Server.MapPath("~/Controllers/Videos/client_secrets.json");
             UserCredential credential;
+            var timeToRefreshToken = "3600";
+
             using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
                 credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 GoogleClientSecrets.Load(stream).Secrets,
-                    // This OAuth 2.0 access scope allows for read-only access to the authenticated 
-                    // user's account, but not other types of account access.
+                // This OAuth 2.0 access scope allows for read-only access to the authenticated 
+                // user's account, but not other types of account access.
                 new[] { YouTubeService.Scope.YoutubeReadonly },
                 "user",
                 CancellationToken.None,
-                new FileDataStore(this.GetType().ToString())
+                new FileDataStore(GetType().ToString())
                );
+
+                credential.Token.RefreshToken = timeToRefreshToken;
             }
-            var youtubeService = new YouTubeService(new BaseClientService.Initializer()
+
+            GenerateRefreshTokenScheduler(credential);
+
+            var youtubeService = new YouTubeService(new BaseClientService.Initializer
             {
                 HttpClientInitializer = credential,
                 ApplicationName = this.GetType().ToString()
             });
 
             return youtubeService;
+        }
+
+        private void GenerateRefreshTokenScheduler(UserCredential credential)
+        {
+            credential.Token.RefreshToken = "3600";                      
+            JobSchedulerConfig.ScheduleRefreshJob(credential);
+            
         }
 
         public void GetVideoList(YouTubeService youtubeService, List<Video> videos)

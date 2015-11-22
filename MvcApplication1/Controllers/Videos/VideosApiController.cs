@@ -24,7 +24,7 @@ namespace OnePieceAbridged.Controllers.Videos
         {
             var videos = new List<Video>();
             var youtubeOperations = new YoutubeOperations();
-            var youtubeService = youtubeOperations.GenerateYoutubeRequest().Result;
+            var youtubeService = (YouTubeService)HttpRuntime.Cache.Get("youtubeService");
             youtubeOperations.GetVideoList(youtubeService, videos);
             return videos;
         }

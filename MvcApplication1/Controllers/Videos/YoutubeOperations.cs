@@ -17,46 +17,6 @@ namespace OnePieceAbridged.Controllers.Videos
 {
     public class YoutubeOperations
     {
-        public async Task<YouTubeService> GenerateYoutubeRequest()
-        {
-
-            var fileName = HttpContext.Current.Server.MapPath("~/Controllers/Videos/client_secrets.json");
-            UserCredential credential;
-            var timeToRefreshToken = "3600";
-
-            using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-            {
-                credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                GoogleClientSecrets.Load(stream).Secrets,
-                // This OAuth 2.0 access scope allows for read-only access to the authenticated 
-                // user's account, but not other types of account access.
-                new[] { YouTubeService.Scope.YoutubeReadonly },
-                "user",
-                CancellationToken.None,
-                new FileDataStore(GetType().ToString())
-               );
-
-                credential.Token.RefreshToken = timeToRefreshToken;
-            }
-
-            GenerateRefreshTokenScheduler(credential);
-
-            var youtubeService = new YouTubeService(new BaseClientService.Initializer
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = this.GetType().ToString()
-            });
-
-            return youtubeService;
-        }
-
-        private void GenerateRefreshTokenScheduler(UserCredential credential)
-        {
-            credential.Token.RefreshToken = "3600";                      
-            JobSchedulerConfig.ScheduleRefreshJob(credential);
-            
-        }
-
         public void GetVideoList(YouTubeService youtubeService, List<Video> videos)
         {
             var channelsListRequest = youtubeService.Channels.List("contentDetails");

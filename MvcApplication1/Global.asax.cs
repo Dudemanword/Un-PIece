@@ -18,12 +18,13 @@ namespace OnePieceAbridged
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             JobSchedulerConfig.Start();
+            var youtubeAuthentication = new YoutubeAuthenticaion();
+            youtubeAuthentication.GenerateAuthenticationAndCreateService();
         }
     }
 }

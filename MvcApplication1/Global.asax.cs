@@ -7,6 +7,12 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Collections.Specialized;
+using System.Net.Http;
+using Hangfire.Mongo;
+using HangfireConfiguration = Hangfire.GlobalConfiguration;
+using GlobalConfiguration = System.Web.Http.GlobalConfiguration;
+using Hangfire;
 
 namespace OnePieceAbridged
 {
@@ -19,12 +25,10 @@ namespace OnePieceAbridged
         {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            JobSchedulerConfig.Start();
-            var youtubeAuthentication = new YoutubeAuthenticaion();
-            youtubeAuthentication.GenerateAuthenticationAndCreateService();
         }
     }
 }

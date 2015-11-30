@@ -1,4 +1,5 @@
-﻿<body>
+﻿<script src="~/Scripts/home/VideosController.js"></script>
+<body ng-controller="VideosController">
     <link href='https://fonts.googleapis.com/css?family=Oswald:700|Fjalla+One' rel='stylesheet' type='text/css'>
     <!-- Home -->
     <a class="scroll" id="home"></a>
@@ -8,14 +9,14 @@
         </div>
     </div>
 
-    <div class="content" ng-controller="VideosController">
+    <div class="content">
         <div class="section full">
             <h2 style="font-family: 'Oswald', sans-serif;">Latest Videos</h2>
             <div style="height: 360px; width: 480px">
                 <uib-carousel interval="Interval" no-wrap="noWrapSlides">
-                    <uib-slide ng-repeat="video in latestVideos" active="video.active">
-                        <img ng-src="{{video.ThumbnailUrl}}" ng-click="open(video)" style="margin:auto;">
-                        <div class="carousel-caption">
+                    <uib-slide ng-repeat="video in latestVideos" active="video.active" ng-click="open(video)">
+                        <img ng-src="{{video.ThumbnailUrl}}" style="margin:auto; cursor: pointer">
+                        <div class="carousel-caption" style="cursor: pointer">
                             <h4>{{video.Name}}</h4>
                             <h5>{{video.Description}}</h5>
                         </div>
@@ -53,11 +54,10 @@
             </div>
             <div class="clear"></div>
 
-
+            <script src="~/Scripts/home/VideosController.js"></script>
 
         </div>
     </div>
+
 </body>
 
-<script src="~/Scripts/home/ModalController.js"></script>
-<script src="~/Scripts/home/VideosController.js"></script>

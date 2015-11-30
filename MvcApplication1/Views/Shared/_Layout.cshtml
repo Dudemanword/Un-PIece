@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html ng-app="unPiece">
 <head>
+    <base href="/" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
@@ -27,15 +28,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Un Piece</a>
+            <a class="navbar-brand" href="#">Straw Hat</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
-
+        <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-controller="NavbarController">
             <ul class="nav navbar-nav">
-                <li class="active">@Html.ActionLink("Home", "Index", "Home")</a></li>
-                <li>@Html.ActionLink("Videos", "Videos", "Videos")</li>
+                <li ng-class="{active: isActive('/')}"><a href="/">Home</a></li>
+                <li ng-class="{active: isActive('/Videos/Videos')}"><a href="/Videos/Videos">Videos</a></li>
                 <li><a href="#">Blogs</a></li>
             </ul>
             <form class="navbar-form navbar-left" role="search">
@@ -46,7 +46,7 @@
             </form>
         </div><!-- /.navbar-collapse -->
     </nav>
-
+    <script src="~/Scripts/Shared/NavbarController.js"></script>
     @RenderBody()
 
     
@@ -55,3 +55,4 @@
     
 </body>
 </html>
+

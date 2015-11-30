@@ -15,6 +15,10 @@ using Google.Apis.YouTube.v3.Data;
 using System.IO;
 using System.Threading;
 using System.Web;
+using DatabaseInteractions;
+using MongoDB.Driver;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson;
 
 namespace OnePieceAbridged.Controllers.Videos
 {
@@ -24,11 +28,15 @@ namespace OnePieceAbridged.Controllers.Videos
         {
             var videos = new List<Video>();
             var youtubeOperations = new YoutubeOperations();
-            var youtubeService = (YouTubeService)HttpRuntime.Cache.Get("youtubeService");
-            youtubeOperations.GetVideoList(youtubeService, videos);
+
+            var databaseInteraction = new MongoDbInteraction(new MongoDbConnection { CollectionName = "googleAuthorization", DatabaseName = "StrawHatEntertainment" },
+                                                             new MongoClient("mongodb://localhost"));
+            
+            var tokenInfo = BsonSerializer.Deserialize<TokenInfo>(databaseInteraction.FindAll<BsonDocument>().Result[0]);
+                        
+            youtubeOperations.GetVideoList(tokenInfo, videos);
             return videos;
         }
-
         
     }
 }

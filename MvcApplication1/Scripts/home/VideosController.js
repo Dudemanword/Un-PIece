@@ -1,14 +1,10 @@
-﻿var app = angular.module('unPiece', ['ui.bootstrap', 'ngAnimate']);
+﻿var app = angular.module('unPiece');
 app.controller("VideosController", function ($scope, $databaseService, $q, $uibModal, $sce) {
     $scope.getLatestVideos = function () {
         if (!$scope.latestVideos) {
             console.log("No vids")
             $databaseService.getLatestVideosFromDatabase().then(function (response) {
                 $scope.latestVideos = response;
-                //for (var i = 0; i < response.length; i++) {
-                //    var video = response[i];
-                //    video["VideoUrl"] = $sce.trustAsResourceUrl(video["VideoUrl"]);
-                //}
             });
         }
     }
@@ -18,6 +14,7 @@ app.controller("VideosController", function ($scope, $databaseService, $q, $uibM
             $scope.blogs = response;
         });
     }
+
     $scope.Interval = 3000;
     $scope.noWrapSlides = false;
 

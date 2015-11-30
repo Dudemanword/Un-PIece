@@ -1,6 +1,5 @@
 ﻿using Google.Apis.Auth.OAuth2;
-using Quartz;
-using Quartz.Impl;
+using Hangfire;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,26 +9,21 @@ namespace OnePieceAbridged.App_Start
 {
     public static class JobSchedulerConfig
     {
-        private static IScheduler _scheduler;
+        private static BackgroundJobServer _backgroundJobServer;
 
         static JobSchedulerConfig()
         {
-            _scheduler = StdSchedulerFactory.GetDefaultScheduler();
+            _backgroundJobServer = new BackgroundJobServer();
         }
-
-        public static void Start()
+                
+        internal static void RegisterJobs()
         {
-            _scheduler.Start();
-        }
+            var updateAccessToken = new UpdateAccessToken();
+            var updateVideos = new UpdateVideos();
 
-        internal static void ScheduleRefreshJob(UserCredential credential)
-        {
-            var job = JobBuilder.Create<RefreshTokenJob>().Build();
-            var trigger = TriggerBuilder.Create()
-                .WithSimpleSchedule(s => s.WithIntervalInSeconds(int.Parse(credential.Token.RefreshToken)))
-                .Build();
-
-            _scheduler.ScheduleJob(job, trigger);
+            BackgroundJob.Enqueue<UpdateAccessToken>(x => x.UpdateToken());
+            RecurringJob.AddOrUpdate(() => updateAccessToken.UpdateToken(), Cron.Hourly);
+            RecurringJob.AddOrUpdate(() => updateVideos.GetVideosAndLogToDatabase(), Cron.Hourly());
         }
     }
 }

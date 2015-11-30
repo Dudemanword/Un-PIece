@@ -23,7 +23,6 @@ namespace OnePieceAbridged.App_Start
 
             BackgroundJob.Enqueue<UpdateAccessToken>(x => x.UpdateToken());
             RecurringJob.AddOrUpdate(() => updateAccessToken.UpdateToken(), Cron.Hourly);
-            RecurringJob.AddOrUpdate(() => updateVideos.GetVideosAndLogToDatabase(), Cron.Hourly());
         }
     }
 }

@@ -26,15 +26,16 @@ namespace OnePieceAbridged.Controllers.Videos
     {
         public List<Video> Get()
         {
-            var videos = new List<Video>();
+            //var videos = new List<Video>();
             var youtubeOperations = new YoutubeOperations();
 
-            var databaseInteraction = new MongoDbInteraction(new MongoDbConnection { CollectionName = "googleAuthorization", DatabaseName = "StrawHatEntertainment" },
+            var databaseInteraction = new MongoDbInteraction(new MongoDbConnection { CollectionName = "videos", DatabaseName = "StrawHatEntertainment" },
                                                              new MongoClient("mongodb://localhost"));
-            
-            var tokenInfo = BsonSerializer.Deserialize<TokenInfo>(databaseInteraction.FindAll<BsonDocument>().Result[0]);
+
+            var videos = databaseInteraction.FindAll<Video>().Result;
+            //var tokenInfo = BsonSerializer.Deserialize<TokenInfo>(databaseInteraction.FindAll<BsonDocument>().Result[0]);
                         
-            youtubeOperations.GetVideoList(tokenInfo, videos);
+            //youtubeOperations.GetVideoList(tokenInfo, videos);
             return videos;
         }
         

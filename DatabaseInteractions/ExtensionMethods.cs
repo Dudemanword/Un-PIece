@@ -13,7 +13,7 @@ namespace DatabaseInteractions
         public static List<BsonDocument> ToBsonDocumentList(this IEnumerable list)
         {
             var bsonList = new List<BsonDocument>();
-            foreach (var item in bsonList)
+            foreach (var item in list)
             {
                 bsonList.Add(item.ToBsonDocument());
             }

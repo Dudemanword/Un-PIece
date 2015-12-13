@@ -1,4 +1,6 @@
 ﻿using DatabaseInteractions;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using OnePieceAbridged.Controllers;
 using OnePieceAbridged.Controllers.Videos;
@@ -24,9 +26,19 @@ namespace OnePieceAbridged.App_Start
 
         internal void GetVideosAndLogToDatabase(TokenInfo tokenInfo)
         {
-            var videoList = _youtubeOperations.GetVideoList(tokenInfo, new List<Video>());
+            var result = _databaseInteraction.FindAll<BsonDocument>().Result;
+            var videoList = _youtubeOperations.GetVideoList(tokenInfo);
 
-            _databaseInteraction.LogMany(videoList.ToBsonDocumentList());
+            if (result == null)
+            {
+                _databaseInteraction.Log(videoList);
+            }
+
+            else
+            {
+                var oldVideoList = BsonSerializer.Deserialize<Videos>(result[0]);
+                _databaseInteraction.ReplaceById(oldVideoList._id, videoList);
+            }
         }
     }
 }

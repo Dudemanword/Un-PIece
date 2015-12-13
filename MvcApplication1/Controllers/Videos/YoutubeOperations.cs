@@ -24,11 +24,11 @@ namespace OnePieceAbridged.Controllers.Videos
 {
     public class YoutubeOperations
     {
-        public List<Video> GetVideoList(TokenInfo tokenInfo, List<Video> videos)
+        public Videos GetVideoList(TokenInfo tokenInfo)
         {
             var httpClient = new HttpClient();
             var baseUrl = "https://www.googleapis.com/youtube/v3";
-
+            
             
             var channelInformation = GetChannelInformation(baseUrl, tokenInfo, httpClient);
             var playlistInformation = GetPlayListInformation(channelInformation, baseUrl, tokenInfo, httpClient);
@@ -39,9 +39,13 @@ namespace OnePieceAbridged.Controllers.Videos
                 Name = x.snippet.title,
                 ThumbnailUrl = x.snippet.thumbnails.high.url,
                 VideoUrl = @"http://www.youtube.com/embed/" + x.snippet.resourceId.VideoId
-            });
+            }).ToList();
 
-            videos.AddRange(video);
+            var videos = new Videos
+            {
+                VideoList = video
+            };
+
             return videos;
         }
 

@@ -41,7 +41,7 @@ namespace DatabaseInteractions
             return collection.Find(_ => true).ToListAsync();
         }
 
-        public Task Replace<T1, T2>(T1 _id, T2 updatedObject)
+        public Task ReplaceById<T1, T2>(T1 _id, T2 updatedObject)
         {
             var database = _mongo.GetDatabase(_connection.DatabaseName);
             var collection = database.GetCollection<BsonDocument>(_connection.CollectionName);

@@ -12,6 +12,11 @@ namespace OnePieceAbridged.Controllers.Videos
         public string Description { get; set; }
         public string ThumbnailUrl { get; set; }
         public string VideoUrl { get; set; }
+    }
+
+    public class Videos
+    {
+        public List<Video> VideoList { get; set; }
         public ObjectId _id { get; set; }
     }
 }

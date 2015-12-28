@@ -1,10 +1,11 @@
 ﻿var app = angular.module('unPiece');
 app.controller("VideosController", function ($scope, $databaseService, $q, $uibModal, $sce) {
-    $scope.getLatestVideos = function () {
-        if (!$scope.latestVideos) {
+    $scope.getVideos = function () {
+        if (!$scope.videos) {
             console.log("No vids")
-            $databaseService.getLatestVideosFromDatabase().then(function (response) {
-                $scope.latestVideos = response;
+            $databaseService.getVideosFromDatabase().then(function (response) {
+                $scope.videos = response.videos;
+                $scope.latestVideo = response.latestVideo;
             });
         }
     }
@@ -36,11 +37,7 @@ app.controller("VideosController", function ($scope, $databaseService, $q, $uibM
         });
     }
 
-    $scope.cancel = function () {
-        modalInstance.dismiss('cancel');
-    };
-
-    $scope.getLatestVideos();
+    $scope.getVideos();
     $scope.getLatestBlogs();
 }).filter('trustAsResourceUrl', ['$sce', function ($sce) {
     return function (val) {
@@ -49,7 +46,7 @@ app.controller("VideosController", function ($scope, $databaseService, $q, $uibM
 }]);;
 
 app.service('$databaseService', function ($q, $http) {
-    this.getLatestVideosFromDatabase = function (callback) {
+    this.getVideosFromDatabase = function (callback) {
         return $q(function (resolve, reject) {
             $http.get('/api/videosapi').success(function (data) {
                 resolve(data);

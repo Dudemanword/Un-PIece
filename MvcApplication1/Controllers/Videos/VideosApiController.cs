@@ -24,7 +24,7 @@ namespace OnePieceAbridged.Controllers.Videos
 {
     public class VideosApiController : ApiController
     {
-        public List<Video> Get()
+        public VideoWithLatest Get()
         {
             //var videos = new List<Video>();
             var youtubeOperations = new YoutubeOperations();
@@ -37,13 +37,14 @@ namespace OnePieceAbridged.Controllers.Videos
 
             //youtubeOperations.GetVideoList(tokenInfo, videos);
             //var videoList = videos.Where(x => x.VideoList.Any()).ToList();
-            var videoList = new List<Video>();
-
+            var videoWithLatest = new VideoWithLatest();
+            videoWithLatest.latestVideo = videos.Select(x => x.VideoList.OrderByDescending(y => y.PublishedDate).FirstOrDefault()).FirstOrDefault();
+            videoWithLatest.videos = new List<Video>();
             foreach (var video in videos)
             {
-                videoList.AddRange(video.VideoList);
+                videoWithLatest.videos.AddRange(video.VideoList);
             }
-            return videoList;
+            return videoWithLatest;
         }
         
     }

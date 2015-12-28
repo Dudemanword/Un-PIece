@@ -38,7 +38,8 @@ namespace OnePieceAbridged.Controllers.Videos
                 Description = x.snippet.description,
                 Name = x.snippet.title,
                 ThumbnailUrl = x.snippet.thumbnails.high.url,
-                VideoUrl = @"http://www.youtube.com/embed/" + x.snippet.resourceId.VideoId
+                VideoUrl = @"http://www.youtube.com/embed/" + x.snippet.resourceId.VideoId,
+                PublishedDate = x.snippet.publishedAt
             }).ToList();
 
             var videos = new Videos

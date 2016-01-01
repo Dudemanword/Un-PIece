@@ -1,8 +1,6 @@
-﻿var app = angular.module('unPiece');
-app.controller("VideosController", function ($scope, $databaseService, $q, $uibModal, $sce) {
+﻿app.controller("HomeController", function ($scope, $databaseService, $q, $uibModal, $sce, $route) {
     $scope.getVideos = function () {
         if (!$scope.videos) {
-            console.log("No vids")
             $databaseService.getVideosFromDatabase().then(function (response) {
                 $scope.videos = response.videos;
                 $scope.latestVideo = response.latestVideo;
@@ -62,3 +60,6 @@ app.service('$databaseService', function ($q, $http) {
         })
     }
 });
+
+
+

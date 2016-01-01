@@ -1,0 +1,23 @@
+﻿<section class="videos">
+
+    <ul>
+        <li class="featuredItem" ng-repeat="video in videos">
+            <img ng-src="{{video.ThumbnailUrl}}" style="margin:auto; cursor: pointer" ng-click="open(video)" />
+            <script type="text/ng-template" id="myModalContent.html">
+                <div class="modal-header">
+                    <button class="close" type="button" ng-click="cancel()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" ng-src="{{video.VideoUrl | trustAsResourceUrl}}" allowfullscreen="allowfullscreen"
+                                mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen"
+                                webkitallowfullscreen="webkitallowfullscreen"></iframe>
+                    </div>
+                </div>
+            </script>
+            <h2>{{video.Name}}</h2>
+            <p>{{video.Description}}</p>
+        </li>
+    </ul>
+
+</section>

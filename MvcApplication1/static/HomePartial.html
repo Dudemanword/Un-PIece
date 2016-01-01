@@ -1,0 +1,91 @@
+﻿<div ng-controller="HomeController">
+
+    <!-- Home -->
+    <a class="scroll" id="home"></a>
+
+
+    <div class="mainsection">
+        <div class="holdall">
+            <div class="holdleft">
+
+                <section class="content">
+
+                    <div class="header">
+                        <div class="title">Latest Video</div>
+                    </div>
+
+                    <div class="section full">
+                        <div class="images">
+                            <img ng-src="{{latestVideo.ThumbnailUrl}}" style="margin:auto; cursor: pointer" ng-click="open(latestVideo)" />
+                            <script type="text/ng-template" id="myModalContent.html">
+                                <div class="modal-header">
+                                    <button class="close" type="button" ng-click="cancel()">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" ng-src="{{video.VideoUrl | trustAsResourceUrl}}" allowfullscreen="allowfullscreen"
+                                                mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen"
+                                                webkitallowfullscreen="webkitallowfullscreen"></iframe>
+                                    </div>
+                                </div>
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="description">
+                        <div class="videoTitle">{{latestVideo.Name}}</div>
+                        <div class="videoDescription">{{latestVideo.Description}}</div>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="holdright">
+                <div class="header news">News</div>
+                <h1>LOOKEE NEWS</h1>
+                <p>This news would be cool</p>
+            </div>
+
+        </div>
+
+        <section class="videos">
+
+            <ul>
+                <li class="featuredItem" ng-repeat="video in videos">
+                    <img ng-src="{{video.ThumbnailUrl}}" style="margin:auto; cursor: pointer" ng-click="open(video)" />
+                    <script type="text/ng-template" id="myModalContent.html">
+                        <div class="modal-header">
+                            <button class="close" type="button" ng-click="cancel()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" ng-src="{{video.VideoUrl | trustAsResourceUrl}}" allowfullscreen="allowfullscreen"
+                                        mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen"
+                                        webkitallowfullscreen="webkitallowfullscreen"></iframe>
+                            </div>
+                        </div>
+                    </script>
+                    <h2>{{video.Name}}</h2>
+                    <p>{{video.Description}}</p>
+                </li>
+            </ul>
+
+        </section>
+
+        <div class="misc">
+
+            <div class="blogs">
+                <div class="header">
+                    <div class="title">Blargs</div>
+                </div>
+                <ul>
+                    <li ng-repeat="blog in blogs">
+                        <h2>{{blog.Name}}</h2>
+                        <p>{{blog.Description}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/home/VideosController.js"></script>

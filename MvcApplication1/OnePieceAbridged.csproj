@@ -307,7 +307,6 @@
     <Compile Include="Controllers\Blogs\BlogsController.cs" />
     <Compile Include="Controllers\GoogleAuthorization.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\VideosContoller.cs" />
     <Compile Include="Controllers\Videos\ChannelInformation.cs" />
     <Compile Include="Controllers\Videos\ContentDetails.cs" />
     <Compile Include="Controllers\Videos\PlayListInformation.cs" />
@@ -462,18 +461,6 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\errors.json" />
-    <Content Include="Scripts\angular-touch.min.js.map" />
-    <Content Include="Scripts\angular-sanitize.min.js.map" />
-    <Content Include="Scripts\angular-route.min.js.map" />
-    <Content Include="Scripts\angular-resource.min.js.map" />
-    <Content Include="Scripts\angular-messages.min.js.map" />
-    <Content Include="Scripts\angular-message-format.min.js.map" />
-    <Content Include="Scripts\angular-loader.min.js.map" />
-    <Content Include="Scripts\angular-cookies.min.js.map" />
-    <Content Include="Scripts\angular-aria.min.js.map" />
-    <Content Include="Scripts\angular-animate.min.js.map" />
-    <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Controllers\Videos\client_secrets.json" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -494,11 +481,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Content\themes\treviso\fonts\one piece font.ttf" />
-    <Content Include="Views\Blog\PostBlog.cshtml" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Scripts\home\ModalController.js" />
-    <Content Include="Scripts\home\VideosController.js" />
-    <Content Include="Scripts\home\custom.js" />
+    <Content Include="Scripts\home\VideoController.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
@@ -1243,6 +1226,23 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <Content Include="Views\Blog\PostBlog.cshtml" />
+    <Content Include="Scripts\errors.json" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-touch.min.js.map" />
+    <Content Include="Scripts\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular-messages.min.js.map" />
+    <Content Include="Scripts\angular-message-format.min.js.map" />
+    <Content Include="Scripts\angular-loader.min.js.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="Scripts\angular-aria.min.js.map" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\home\ModalController.js" />
+    <Content Include="Scripts\home\HomeController.js" />
+    <Content Include="Scripts\home\custom.js" />
     <Content Include="Scripts\home\jquery.jcarousel.js" />
     <Content Include="Scripts\home\jquery.jcarousel.min.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
@@ -1294,10 +1294,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\version.json" />
-    <Content Include="Views\Videos\Videos.cshtml" />
+    <Content Include="static\Videos.html" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Scripts\version.json" />
+    <Content Include="static\HomePartial.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

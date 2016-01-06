@@ -26,12 +26,33 @@ namespace DatabaseInteractions
             await collection.InsertOneAsync(document);
         }
 
+        public Task<List<T>> FindAllWithoutId<T>()
+        {
+            var database = _mongo.GetDatabase(_connection.DatabaseName);
+            var collection = database.GetCollection<T>(_connection.CollectionName);
+            return collection.Find(_ => true).Project<T>(Builders<T>.Projection.Exclude("_id")).ToListAsync();
+        }
+
+        public Task<List<T>> GetAscendingWithoutId<T>(SortDefinition<T> sortDefinition)
+        {
+            var database = _mongo.GetDatabase(_connection.DatabaseName);
+            var collection = database.GetCollection<T>(_connection.CollectionName);
+            return collection.Find(_ => true).Project<T>(Builders<T>.Projection.Exclude("_id")).Sort(sortDefinition).ToListAsync();
+        }
+
         public async Task LogMany<T>(IEnumerable<T> objectsToStore)
         {
             var database = _mongo.GetDatabase(_connection.DatabaseName);
             var collection = database.GetCollection<BsonDocument>(_connection.CollectionName);
             var documentList = objectsToStore.ToBsonDocumentList();
             await collection.InsertManyAsync(documentList);
+        }
+
+        public Task<List<BsonDocument>> GetWithFilterWithoutId(FilterDefinition<BsonDocument> filterDefinition)
+        {
+            var database = _mongo.GetDatabase(_connection.DatabaseName);
+            var collection = database.GetCollection<BsonDocument>(_connection.CollectionName);
+            return collection.Find(filterDefinition).ToListAsync();
         }
 
         public Task<List<T>> FindAll<T>()

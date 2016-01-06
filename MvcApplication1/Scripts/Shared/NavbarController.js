@@ -1,6 +1,4 @@
-﻿var app = angular.module('unPiece', ['ui.bootstrap', 'ngAnimate', 'ngRoute'], function($locationProvider){
-    $locationProvider.html5Mode(true);
-
+﻿var app = angular.module('unPiece', ['ui.bootstrap', 'ngAnimate', 'ngRoute'], function(){
 });
 
 app.config(["$routeProvider", function ($routeProvider) {
@@ -13,11 +11,29 @@ app.config(["$routeProvider", function ($routeProvider) {
                     console.log("In Home")
                 }
             }
+        }).when("/", {
+            templateUrl: '/static/HomePartial.html',
+            controller: 'HomeController',
+            resolve: {
+                function() {
+                    console.log("In Home")
+                }
+            }
         })
 
         .when("/videos", {
-            templateUrl: '/static/Videos.html',
-            controller: 'VideoController'
+            templateUrl: '/static/VideoPartial.html',
+            controller: 'VideoController',
+            resolve: {
+                function() {
+                    console.log("In Video")
+                }
+            }
+        })
+
+        .when("/blogs", {
+            templateUrl: '/static/CreatePost.html',
+            controller: 'BlogController'
         })
 
     .otherwise({ redirectTo: "/" })

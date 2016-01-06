@@ -1,5 +1,5 @@
-﻿app.controller('VideoController', function ($scope, $databaseService, $uibModal) {
-    $databaseService.getVideosFromDatabase().then(function (response) {
+﻿app.controller('VideoController', function ($scope, $serverCommunication, $uibModal) {
+    $serverCommunication.getVideosFromDatabase().then(function (response) {
         $scope.videos = response.videos;
         $scope.latestVideo = response.latestVideo;
     });

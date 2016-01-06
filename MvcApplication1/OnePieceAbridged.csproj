@@ -303,7 +303,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\Blogs\Blog.cs" />
+    <Compile Include="Controllers\Blogs\BlogData.cs" />
     <Compile Include="Controllers\Blogs\BlogsController.cs" />
     <Compile Include="Controllers\GoogleAuthorization.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -481,6 +481,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Content\themes\treviso\fonts\one piece font.ttf" />
+    <Content Include="Scripts\home\BlogController.js" />
     <Content Include="Scripts\home\VideoController.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1226,6 +1227,8 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <Content Include="static\BlogPartial.html" />
+    <Content Include="static\CreatePost.html" />
     <Content Include="Views\Blog\PostBlog.cshtml" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
@@ -1294,7 +1297,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="static\Videos.html" />
+    <Content Include="static\VideoPartial.html" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Scripts\version.json" />
     <Content Include="static\HomePartial.html" />

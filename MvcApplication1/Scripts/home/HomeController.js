@@ -1,7 +1,7 @@
-﻿app.controller("HomeController", function ($scope, $databaseService, $q, $uibModal, $sce, $route) {
+﻿app.controller("HomeController", function ($scope, $serverCommunication, $q, $uibModal, $sce, $route) {
     $scope.getVideos = function () {
         if (!$scope.videos) {
-            $databaseService.getVideosFromDatabase().then(function (response) {
+            $serverCommunication.getVideosFromDatabase().then(function (response) {
                 $scope.videos = response.videos;
                 $scope.latestVideo = response.latestVideo;
             });
@@ -9,7 +9,7 @@
     }
 
     $scope.getLatestBlogs = function () {
-        $databaseService.getLatestBlogsFromDatabase().then(function (response) {
+        $serverCommunication.getLatestBlogsFromDatabase().then(function (response) {
             $scope.blogs = response;
         });
     }
@@ -43,7 +43,7 @@
     };
 }]);;
 
-app.service('$databaseService', function ($q, $http) {
+app.service('$serverCommunication', function ($q, $http) {
     this.getVideosFromDatabase = function (callback) {
         return $q(function (resolve, reject) {
             $http.get('/api/videosapi').success(function (data) {
@@ -58,6 +58,14 @@ app.service('$databaseService', function ($q, $http) {
                 resolve(data);
             });
         })
+    }
+
+    this.postBlogPost = function (postData) {
+        return $q(function (resolve, reject) {
+            $http.post('/api/blogs', postData).success(function (data) {
+                console.log('success!');
+            });
+        });
     }
 });
 
